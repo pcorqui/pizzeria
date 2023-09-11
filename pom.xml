@@ -63,6 +63,12 @@
 				</repository>
 			</repositories>
 		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>
