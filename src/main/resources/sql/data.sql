@@ -18,7 +18,7 @@ VALUES
 ("303265780","Shelton Owens","Ap #206-5413 Vivamus St.","figthowens@platzi.com","(821) 880-6661");
 
 -- INSERT PIZZAS
-INSERT INTO `pizzeria`.`pizza` (`id_pizza`, `name`, `description`, `price`, `vegetarian`, `vegan`, `available`)
+INSERT INTO `pizzeria`.`pizza` (`id_pizza`, `name`, `description`, `price`, `vegeterian`, `vegan`, `available`)
 VALUES
 (1,"Pepperoni", "Pepperoni, Homemade Tomato Sauce & Mozzarella.", 23.0, 0, 0, 1),
 (2,"Margherita", "Fior de Latte, Homemade Tomato Sauce, Extra Virgin Olive Oil & Basil.", 18.5, 1, 0, 1),

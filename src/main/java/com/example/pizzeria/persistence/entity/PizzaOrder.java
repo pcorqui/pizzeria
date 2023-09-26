@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "pizza_order")
 @Setter
 @Getter
 @NoArgsConstructor
