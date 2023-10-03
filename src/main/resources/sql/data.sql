@@ -56,3 +56,10 @@ VALUES
 (5, 1, 10, 0.5, 11.0),
 (5, 2, 12, 0.5, 9.5),
 (6, 1, 11, 1, 23);
+
+--tabla de usuarios. las contrasenias estan codificadas con bCryp
+insert into pizzeria.user (username, password, email, locked, disabled)
+values ( 'admin', '$2y$10$GyN/wWgwtwJWYtZDo1YUMeAIFde7E1pZuHzwXmHThPlz2j1wdG0/K', 'prueba@email.com', false, 0);
+
+insert into pizzeria.user (username, password, email, locked, disabled)
+values ( 'customer', '$2y$10$BWTY5illUfhVhQTwuYiR/e9hiVw0KANK8Zafa0ibG3U/lx7yg/Ms2', 'customer@email.com', false, 0);
