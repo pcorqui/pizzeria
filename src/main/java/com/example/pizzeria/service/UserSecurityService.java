@@ -2,16 +2,20 @@ package com.example.pizzeria.service;
 
 import com.example.pizzeria.persistence.entity.UserEntity;
 import com.example.pizzeria.persistence.repository.UserRespository;
+import com.example.pizzeria.web.controller.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserSecurityService implements UserDetailsService {
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     private final UserRespository userRespository;
 
@@ -32,6 +36,8 @@ public class UserSecurityService implements UserDetailsService {
 //                .accountLocked(userEntity.getLocked())
 //                .disabled(userEntity.getDisabled())
 //                .build();
-        return User.builder().username("paul").password("abc123").build();
+
+        //cuando se crea un user deben por lo menos definirse estos 3 atributos
+        return User.builder().username("paul").password("{noop}abc123").roles("ADMIN").build();
     }
 }

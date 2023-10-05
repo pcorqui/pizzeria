@@ -43,10 +43,10 @@ public class SecurityConfig {
 //
 //        return new InMemoryUserDetailsManager(admin);
 //    }
-@Bean
-public PasswordEncoder passwordEncoder() {
-    Map encoder = new HashMap();
-    encoder.put("noop",NoOpPasswordEncoder.getInstance());
-    return new DelegatingPasswordEncoder("noop",encoder);
-}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        Map encoder = new HashMap();
+        encoder.put("noop",NoOpPasswordEncoder.getInstance());
+        return new DelegatingPasswordEncoder("noop",encoder);
+    }
 }
