@@ -23,6 +23,7 @@ public class PizzaService {
     }
 
     //no es lo mejor es mejor usar spring repositories
+    //pero con JDBC template puedes realizar consultas nativas a sql
     public List<PizzaEntity> getAll(){
         return this.jdbcTemplate.query("SELECT * FROM pizza",new BeanPropertyRowMapper<>(PizzaEntity.class));
     }
