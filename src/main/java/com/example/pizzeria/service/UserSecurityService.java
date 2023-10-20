@@ -26,18 +26,17 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserEntity userEntity = this.userRespository.findById(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("user " + username + " not found"));
-//
-//        return User.builder()
-//                .username(userEntity.getUsername())
-//                .password(userEntity.getPassword())
-//                .roles("ADMIN")
-//                .accountLocked(userEntity.getLocked())
-//                .disabled(userEntity.getDisabled())
-//                .build();
+        UserEntity userEntity = this.userRespository.findById(username)
+                .orElseThrow(() -> new UsernameNotFoundException("user " + username + " not found"));
 
-        //cuando se crea un user deben por lo menos definirse estos 3 atributos
-        return User.builder().username("paul").password("{noop}abc123").roles("ADMIN").build();
+        return User.builder()
+                .username(userEntity.getUsername())
+                .password("{noop}"+userEntity.getPassword())
+                .roles("CHINGON")
+                .build();
+
+//        cuando se crea un user deben por lo menos definirse estos 3 atributos
+//        return User.builder().
+//                username("paul").password("{noop}abc123").roles("CHINGON").build();
     }
 }
