@@ -2,21 +2,20 @@ package com.example.pizzeria.web.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -28,8 +27,8 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/")
-                .authenticated()
+                .requestMatchers(antMatcher("/api/auth/**")).permitAll() //permite pasar la peticion para obtener el token
+                //.requestMatchers(antMatcher("/**")).authenticated()
                 .and()
                 .httpBasic();
         return http.build();
@@ -52,6 +51,12 @@ public class SecurityConfig {
 //
 //        return new InMemoryUserDetailsManager(admin);
 //    }
+
+    //para poder recuperar el authentication manager
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         Map encoder = new HashMap();
